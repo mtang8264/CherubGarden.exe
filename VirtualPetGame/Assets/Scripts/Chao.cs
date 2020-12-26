@@ -88,6 +88,19 @@ public class Chao : MonoBehaviour
         ManageMovement();
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        moveTarget = this.transform.position;
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        Vector3 p = transform.position;
+        p -= new Vector3(0, -0.1f, 0);
+        transform.position = p;
+        moveTarget = transform.position;
+    }
+
     void ManageStatDecrease()
     {
         timer -= Time.deltaTime;
@@ -251,6 +264,7 @@ public class Chao : MonoBehaviour
 
         float newX = Random.Range(minX, maxX);
         float newY = Random.Range(minY, maxY);
+
         moveTarget = new Vector2(newX, newY);
     }
 
